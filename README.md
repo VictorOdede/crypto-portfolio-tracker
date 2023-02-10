@@ -6,7 +6,7 @@ This is a portfolio tracker that fetches transaction data from a CSV and exchang
 
 ## Approach
 
-I executed a strategy that involved using a streaming approach for processing the CSV data. This was accomplished by partitioning the data into manageable chunks and temporarily storing it in a buffer. The objective of this technique was to safeguard against potential code failures that could arise from attempting to load the entire data set into memory, as the size of the CSV file is substantial and could result in memory exhaustion. Additionally, we are executing computations on each data row incrementally while the data is being streamed, allowing us to perform the necessary processing in real-time.
+I executed a strategy that involved a streaming approach for processing the CSV data. This was accomplished by partitioning the data into manageable chunks and temporarily storing it in a buffer. The objective of this technique was to safeguard against potential code failures that could arise from attempting to load the entire data set into memory, as the size of the CSV file is substantial and could result in memory exhaustion. Additionally, we are executing computations on each data row incrementally while the data is being streamed, allowing us to perform the necessary processing in real-time.
 
 
 ## Getting started
