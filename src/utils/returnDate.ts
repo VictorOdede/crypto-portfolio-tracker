@@ -1,5 +1,3 @@
-import express from "express";
-import bodyParser from "body-parser";
 import axios from "axios";
 import { parse } from "csv-parse";
 import fs from "fs";
