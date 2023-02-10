@@ -73,9 +73,9 @@ export const returnDate = async (myKey: string, date: string) => {
 
       for (let item in tokensDeposited) {
         let totalTokens = tokensDeposited[item] - tokensWithdrawn[item];
-        let tokenPrice = dollarValue.data[item].USD;
-        // set dollar value for each token
 
+        // set dollar value for each token
+        let tokenPrice = dollarValue.data[item].USD;
         tokensRemaining[item] = `${(totalTokens * tokenPrice).toFixed(2)} USD`;
       }
       console.log(`Total portfolio value on ${parsedDate.toDateString()}:`);

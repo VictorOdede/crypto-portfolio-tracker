@@ -28,48 +28,68 @@ app.get("/token", async (req, res) => {
     res.status(200).send({ message: "Request is OK!" });
   } catch (error) {
     res.status(404).send({ message: error });
+    console.log(error);
   }
 });
 
 /* ***************************************************************************************************************** */
 
 // endpoint for fetching latest portfolio value for a specified token
-app.post("/token/latest", async (req, res) => {
+app.post("/token/latest", async (req: { body: { token: string } }, res) => {
   const { token } = req.body;
-
-  try {
-    await returnLatestToken(apiKey, token);
-    res.status(200).send({ message: "Request is OK!" });
-  } catch (error) {
-    res.status(404).send({ message: error });
+  if (token) {
+    try {
+      await returnLatestToken(apiKey, token);
+      res.status(200).send({ message: "Request is OK!" });
+    } catch (error) {
+      res.status(404).send({ message: error });
+      console.log(error);
+    }
+  } else {
+    res.status(404).send({ message: "Invalid input" });
+    console.log("ERROR: Invalid input");
   }
 });
 
 /* ***************************************************************************************************************** */
 
 // endpoint for fetching portfolio value for a specified token up to a specified date
-app.post("/token/date", async (req, res) => {
-  const { token, date } = req.body;
-
-  try {
-    await returnDateToken(apiKey, token, date);
-    res.status(200).send({ message: "Request is OK!" });
-  } catch (error) {
-    res.status(404).send({ message: error });
+app.post(
+  "/token/date",
+  async (req: { body: { token: string; date: string } }, res) => {
+    const { token, date } = req.body;
+    if (token && date) {
+      try {
+        await returnDateToken(apiKey, token, date);
+        res.status(200).send({ message: "Request is OK!" });
+      } catch (error) {
+        res.status(404).send({ message: error });
+        console.log(error);
+      }
+    } else {
+      res.status(404).send({ message: "Invalid input" });
+      console.log("ERROR: Invalid input");
+    }
   }
-});
+);
 
 /* ***************************************************************************************************************** */
 
 // endpoint for fetching portfolio value for all tokens up to a specified date
-app.post("/date", async (req, res) => {
+app.post("/date", async (req: { body: { date: string } }, res) => {
   const { date } = req.body;
-
-  try {
-    await returnDate(apiKey, date);
-    res.status(200).send({ message: "Request is OK!" });
-  } catch (error) {
-    res.status(404).send({ message: error });
+  if (date) {
+    try {
+      const { date } = req.body;
+      await returnDate(apiKey, date);
+      res.status(200).send({ message: "Request is OK!" });
+    } catch (error) {
+      res.status(404).send({ message: error });
+      console.log(error);
+    }
+  } else {
+    res.status(404).send({ message: "Invalid input" });
+    console.log("ERROR: Invalid input");
   }
 });
 
