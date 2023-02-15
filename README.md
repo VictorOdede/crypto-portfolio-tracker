@@ -1,4 +1,4 @@
-# Propine Engineering interview: Crypto portfolio tracker
+# Crypto portfolio tracker
 
 ## Overview
 
